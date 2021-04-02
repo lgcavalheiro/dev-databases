@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS AVALIACAO360 (
-  ID CHAR(36) NOT NULL,
+  ID CHAR(36) NOT NULL PRIMARY KEY,
   NOME VARCHAR(32) NOT NULL,                                             
   DESCRICAO VARCHAR(256),                                                
   GRUPO_FK CHAR(36) NOT NULL,
