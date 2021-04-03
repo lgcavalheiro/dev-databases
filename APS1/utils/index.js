@@ -1,4 +1,4 @@
-const chance = require('chance');
+const IF = require('./insertFactory');
 const fs = require('fs');
 
 const ddlFolder = '../ddl/';
@@ -10,6 +10,7 @@ const makeDumpFile = function () {
     let ddls = fs.readdirSync(ddlFolder).filter(file => file.includes('.sql'));
     let jts = fs.readdirSync(jtsFolder);
     let relations = fs.readdirSync(relationsFolder);
+    let inserts = fs.readFileSync('../ddl/insert/inserts.sql', 'utf-8');
 
     let dumpString = 'USE aps1; \n';
 
@@ -25,13 +26,16 @@ const makeDumpFile = function () {
         dumpString += fs.readFileSync(relationsFolder + file, 'utf-8');
     })
 
-    if(fs.existsSync(dumpFile)) fs.rmSync(dumpFile);
+    if (inserts) dumpString += '\n\n' + inserts;
+
+    if (fs.existsSync(dumpFile)) fs.rmSync(dumpFile);
 
     fs.writeFileSync(dumpFile, dumpString);
 }
 
 const makeInsertFile = function () {
-
+    IF.makeInserts();
+    makeDumpFile();
 }
 
 const utilsLiterals = {
