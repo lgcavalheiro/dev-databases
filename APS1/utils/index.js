@@ -2,7 +2,7 @@ const chance = require('chance');
 const fs = require('fs');
 
 const ddlFolder = '../ddl/';
-const jtsFolder = ddlFolder + 'join tables/';
+const jtsFolder = ddlFolder + 'junction tables/';
 const relationsFolder = ddlFolder + 'relations/'
 const dumpFile = './sqldump.sql';
 
