@@ -12,3 +12,5 @@ buildNumber.properties
 
 # Project specific
 draft.sql
+utils/node_modules
+utils/*.sql
