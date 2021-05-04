@@ -1,6 +1,7 @@
 package com.github.lgcavalheiro.database;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.sql.Connection;
 
@@ -16,6 +17,16 @@ public class ConnectorTest {
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void shouldCreateDatabase() {
+        try {
+            Connector.initiateDatabase();
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Should not throw an exception!");
         }
     }
 }
