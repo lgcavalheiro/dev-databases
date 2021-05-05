@@ -1,28 +1,24 @@
 package com.github.lgcavalheiro.core;
 
-import com.github.lgcavalheiro.model.Pessoa;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
 
-import java.util.ArrayList;
+import com.github.lgcavalheiro.model.Pessoa;
 
 public abstract class CommandProcessor {
     private CommandProcessor() {
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T> T processCommand(String command) {
-        switch (command.toLowerCase()) {
-            case "getall":
-                return (T) new ArrayList<Pessoa>();
-            case "getone":
-                return (T) new Pessoa();
-            case "update":
-                return (T) (Integer) 1;
-            case "insert":
-                return (T) (Integer) 1;
-            case "delete":
-                return (T) (Integer) 1;
-            default:
-                return (T) "Invalid command!";
-        }
+    public static List<Pessoa> processGetAll() throws SQLException, ParseException {
+        List<Pessoa> result = null;
+        result = QueryRunner.getAll();
+        return result;
+    }
+
+    public static List<Pessoa> getByCpf(String cpf) throws SQLException, ParseException {
+        List<Pessoa> result = null;
+        result = QueryRunner.getByCpf(cpf);
+        return result;
     }
 }

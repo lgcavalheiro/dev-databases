@@ -12,7 +12,6 @@ public class InputProcessor {
     }
 
     public String processInput() throws IOException {
-        System.out.println("Insert command:");
         return reader.readLine();
     }
 }
