@@ -10,6 +10,19 @@ public abstract class CommandProcessor {
 
     @SuppressWarnings("unchecked")
     public static <T> T processCommand(String command) {
-        return (T) new ArrayList<Pessoa>();
+        switch (command.toLowerCase()) {
+            case "getall":
+                return (T) new ArrayList<Pessoa>();
+            case "getone":
+                return (T) new Pessoa();
+            case "update":
+                return (T) (Integer) 1;
+            case "insert":
+                return (T) (Integer) 1;
+            case "delete":
+                return (T) (Integer) 1;
+            default:
+                return (T) "Invalid command!";
+        }
     }
 }
