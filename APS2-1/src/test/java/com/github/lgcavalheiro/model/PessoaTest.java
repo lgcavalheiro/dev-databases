@@ -50,4 +50,10 @@ public class PessoaTest {
         assertTrue("Invalid sexo!", p.getSexo() == sexo);
         assertTrue("Invalid data nascimento!", p.getDataNascimento() == data);
     }
+
+    @Test
+    public void canConvertToString() {
+        Pessoa p = new Pessoa();
+        assertTrue("toString failed!", p.toString().contains(", telefone="));
+    }
 }

@@ -22,6 +22,12 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
+    @Override
+    public String toString() {
+        return "Pessoa [cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", email=" + email + ", nome=" + nome
+                + ", sexo=" + sexo + ", telefone=" + telefone + "]";
+    }
+
     public String getNome() {
         return nome;
     }

@@ -21,4 +21,20 @@ public abstract class CommandProcessor {
         result = QueryRunner.getByCpf(cpf);
         return result;
     }
+
+    public static int processUpdate(List<String> input) throws Exception {
+        return QueryRunner.update(input.get(0), input.get(1), input.get(2));
+    }
+
+    public static int processInsert(List<String> input) throws SQLException {
+        return QueryRunner.insert(input);
+    }
+
+    public static int processDelete(String input) throws SQLException {
+        return QueryRunner.delete(input);
+    }
+
+    public static String processInvalidCommand() {
+        return "Invalid command!";
+    }
 }

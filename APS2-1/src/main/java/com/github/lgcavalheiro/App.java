@@ -16,9 +16,10 @@ public abstract class App {
         try {
             Connector.initiateDatabase();
             List<Pessoa> pessoas = null;
+            int rowsAffected = 0;
 
             InputProcessor processor = new InputProcessor(new InputStreamReader(System.in));
-            System.out.println("Select command:\n-getall\n-getone");
+            System.out.println("Select command:\n-getall\n-getone\n-update");
             String input = processor.processInput();
 
             switch (input.toLowerCase()) {
@@ -33,12 +34,22 @@ public abstract class App {
                     System.out.println(pessoas);
                     break;
                 case "update":
+                    // TODO make human input logic
+                    rowsAffected = CommandProcessor.processUpdate(null);
+                    System.out.println(rowsAffected);
                     break;
                 case "insert":
+                    // TODO make human input logic
+                    rowsAffected = CommandProcessor.processInsert(null);
+                    System.out.println(rowsAffected);
                     break;
                 case "delete":
+                    // TODO make human input logic
+                    rowsAffected = CommandProcessor.processDelete(null);
+                    System.out.println(rowsAffected);
                     break;
                 default:
+                    System.out.println(CommandProcessor.processInvalidCommand());
                     break;
             }
         } catch (Exception e) {

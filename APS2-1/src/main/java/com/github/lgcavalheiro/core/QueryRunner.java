@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.github.lgcavalheiro.database.Connector;
@@ -16,6 +17,9 @@ public abstract class QueryRunner {
     static Connection conn = null;
     static PreparedStatement statement = null;
     static ResultSet resultSet = null;
+
+    private static final List<String> pessoaColumns = Arrays.asList("nome", "email", "cpf", "telefone",
+            "datanascimento", "sexo");
 
     private QueryRunner() {
     }
@@ -38,9 +42,12 @@ public abstract class QueryRunner {
     }
 
     private static void resetState() throws SQLException {
-        statement.close();
-        resultSet.close();
-        conn.close();
+        if (statement != null)
+            statement.close();
+        if (resultSet != null)
+            resultSet.close();
+        if (conn != null)
+            conn.close();
     }
 
     public static List<Pessoa> getAll() throws SQLException, ParseException {
@@ -62,6 +69,36 @@ public abstract class QueryRunner {
             result.add(buildPessoa());
         resetState();
         return result;
+    }
+
+    public static int insert(List<String> input) throws SQLException {
+        initializeStatement(
+                "INSERT INTO pessoa (nome, email, cpf, telefone, sexo, datanascimento) VALUES (?,?,?,?,?,?);");
+        setStatementValues(input.toArray(new String[input.size()]));
+        int rowsAffected = statement.executeUpdate();
+        resetState();
+        return rowsAffected;
+    }
+
+    public static int delete(String cpf) throws SQLException {
+        initializeStatement("DELETE FROM pessoa WHERE cpf = ?;");
+        setStatementValues(cpf);
+        int rowsAffected = statement.executeUpdate();
+        resetState();
+        return rowsAffected;
+    }
+
+    public static int update(String field, String value, String cpf) throws Exception {
+        if (pessoaColumns.contains(field)) {
+            initializeStatement(String.format("UPDATE pessoa SET %s = ? WHERE cpf = ?;", field));
+            setStatementValues(value, cpf);
+            int rowsAffected = statement.executeUpdate();
+            resetState();
+            return rowsAffected;
+        } else {
+            throw new Exception("Invalid field supplied: " + field + "\nValid fields are: " + pessoaColumns.toString());
+        }
+
     }
 
 }
