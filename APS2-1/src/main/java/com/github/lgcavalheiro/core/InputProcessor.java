@@ -11,7 +11,9 @@ public class InputProcessor {
         this.reader = new BufferedReader(reader);
     }
 
-    public String processInput() throws IOException {
+    public String processInput(String... prompt) throws IOException {
+        for (String p : prompt)
+            System.out.println(p);
         return reader.readLine();
     }
 }

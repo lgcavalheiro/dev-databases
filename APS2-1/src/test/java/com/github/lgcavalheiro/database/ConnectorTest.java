@@ -1,11 +1,11 @@
 package com.github.lgcavalheiro.database;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConnectorTest {
     @Test
@@ -13,7 +13,7 @@ public class ConnectorTest {
         Connection conn = null;
         try {
             conn = Connector.getConnection();
-            assertTrue("Invalid connection!", conn.isValid(8));
+            assertTrue(conn.isValid(8), "Invalid connection!");
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();

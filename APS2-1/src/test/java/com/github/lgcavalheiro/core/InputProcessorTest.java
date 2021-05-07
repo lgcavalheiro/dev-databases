@@ -1,11 +1,11 @@
 package com.github.lgcavalheiro.core;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class InputProcessorTest {
     @Test
@@ -13,6 +13,6 @@ public class InputProcessorTest {
         String file = getClass().getClassLoader().getResource("canReadSystemInput.txt").getFile();
         InputProcessor processor = new InputProcessor(new FileReader(file));
         String input = processor.processInput();
-        assertTrue("Invalid input! ", input.equalsIgnoreCase("testinput"));
+        assertTrue(input.equalsIgnoreCase("testinput"), "Invalid input!");
     }
 }

@@ -42,12 +42,12 @@ public abstract class QueryRunner {
     }
 
     private static void resetState() throws SQLException {
-        if (statement != null)
-            statement.close();
+        // if (statement != null)
+        statement.close();
         if (resultSet != null)
             resultSet.close();
-        if (conn != null)
-            conn.close();
+        // if (conn != null)
+        conn.close();
     }
 
     public static List<Pessoa> getAll() throws SQLException, ParseException {

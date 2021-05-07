@@ -1,10 +1,10 @@
 package com.github.lgcavalheiro.model;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Date;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PessoaTest {
     private static Date data = new Date();
@@ -17,19 +17,19 @@ public class PessoaTest {
     @Test
     public void canCreateEmpty() {
         Pessoa p = new Pessoa();
-        assertTrue("Invalid class!", p.getClass().getSimpleName().equalsIgnoreCase("Pessoa"));
+        assertTrue(p.getClass().getSimpleName().equalsIgnoreCase("Pessoa"), "Invalid class!");
     }
 
     @Test
     public void canCreateFull() {
         Pessoa p = new Pessoa(nome, email, cpf, telefone, sexo, data);
 
-        assertTrue("Invalid name!", p.getNome() == nome);
-        assertTrue("Invalid email!", p.getEmail() == email);
-        assertTrue("Invalid cpf!", p.getCpf() == cpf);
-        assertTrue("Invalid telefone!", p.getTelefone() == telefone);
-        assertTrue("Invalid sexo!", p.getSexo() == sexo);
-        assertTrue("Invalid data nascimento!", p.getDataNascimento() == data);
+        assertTrue(p.getNome() == nome, "Invalid name!");
+        assertTrue(p.getEmail() == email, "Invalid email!");
+        assertTrue(p.getCpf() == cpf, "Invalid cpf!");
+        assertTrue(p.getTelefone() == telefone, "Invalid telefone!");
+        assertTrue(p.getSexo() == sexo, "Invalid sexo!");
+        assertTrue(p.getDataNascimento() == data, "Invalid data nascimento!");
     }
 
     @Test
@@ -43,17 +43,17 @@ public class PessoaTest {
         p.setSexo(sexo);
         p.setDataNascimento(data);
 
-        assertTrue("Invalid name!", p.getNome() == nome);
-        assertTrue("Invalid email!", p.getEmail() == email);
-        assertTrue("Invalid cpf!", p.getCpf() == cpf);
-        assertTrue("Invalid telefone!", p.getTelefone() == telefone);
-        assertTrue("Invalid sexo!", p.getSexo() == sexo);
-        assertTrue("Invalid data nascimento!", p.getDataNascimento() == data);
+        assertTrue(p.getNome() == nome, "Invalid name!");
+        assertTrue(p.getEmail() == email, "Invalid email!");
+        assertTrue(p.getCpf() == cpf, "Invalid cpf!");
+        assertTrue(p.getTelefone() == telefone, "Invalid telefone!");
+        assertTrue(p.getSexo() == sexo, "Invalid sexo!");
+        assertTrue(p.getDataNascimento() == data, "Invalid data nascimento!");
     }
 
     @Test
     public void canConvertToString() {
         Pessoa p = new Pessoa();
-        assertTrue("toString failed!", p.toString().contains(", telefone="));
+        assertTrue(p.toString().contains(", telefone="), "toString failed!");
     }
 }

@@ -17,9 +17,11 @@ public abstract class Connector {
 
     public static void initiateDatabase() throws SQLException {
         Connection conn = Connector.getConnection();
-        String query = "CREATE TABLE IF NOT EXISTS pessoa( nome VARCHAR(40), email VARCHAR(80), cpf VARCHAR(14), telefone VARCHAR(30), sexo CHAR(1), datanascimento DATE);";
+        String query = "CREATE TABLE IF NOT EXISTS pessoa( nome VARCHAR(40), email VARCHAR(80), cpf VARCHAR(14) PRIMARY KEY, telefone VARCHAR(30), sexo CHAR(1), datanascimento DATE);";
         Statement statement = conn.createStatement();
         statement.execute(query);
+        query = "INSERT INTO pessoa VALUES ('pessoa test permanente',  'permanente@email.com', '999.999.999-99', '9999-9999', 'M', '1989-12-01') ON CONFLICT DO NOTHING;";
+        statement.executeUpdate(query);
         conn.close();
     }
 }
