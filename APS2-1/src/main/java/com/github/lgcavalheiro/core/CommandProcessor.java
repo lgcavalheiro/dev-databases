@@ -3,6 +3,7 @@ package com.github.lgcavalheiro.core;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import com.github.lgcavalheiro.model.Pessoa;
 
@@ -26,11 +27,11 @@ public abstract class CommandProcessor {
         return QueryRunner.update(input.get(0), input.get(1), input.get(2));
     }
 
-    public static int processInsert(List<String> input) throws SQLException {
+    public static int processInsert(Map<String, String> input) throws Exception {
         return QueryRunner.insert(input);
     }
 
-    public static int processDelete(String input) throws SQLException {
+    public static int processDelete(String input) throws SQLException, ParseException {
         return QueryRunner.delete(input);
     }
 

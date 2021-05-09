@@ -101,6 +101,23 @@ public class AppTest {
     }
 
     @Test
+    public void inputTriggerException() {
+        try {
+            String file = getClass().getClassLoader().getResource("inputTriggerException.txt").getFile();
+
+            final InputStream original = System.in;
+            final FileInputStream fips = new FileInputStream(new File(file));
+
+            System.setIn(fips);
+            App.main(null);
+            System.setIn(original);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Exception happened!");
+        }
+    }
+
+    @Test
     public void inputInvalid() {
         try {
             String file = getClass().getClassLoader().getResource("inputInvalid.txt").getFile();

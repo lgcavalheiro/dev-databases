@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.github.lgcavalheiro.model.Pessoa;
 
@@ -51,7 +53,15 @@ public class CommandProcessorTest {
             while ((singleInput = processor.processInput()) != null)
                 input.add(singleInput);
 
-            int rowsAffected = CommandProcessor.processInsert(input);
+            Map<String, String> inputMap = new HashMap<String, String>();
+            inputMap.put("nome", input.get(0));
+            inputMap.put("email", input.get(1));
+            inputMap.put("cpf", input.get(2));
+            inputMap.put("telefone", input.get(3));
+            inputMap.put("sexo", input.get(4));
+            inputMap.put("datanascimento", input.get(5));
+
+            int rowsAffected = CommandProcessor.processInsert(inputMap);
             assertTrue(rowsAffected == 1, "Insert failed!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +96,15 @@ public class CommandProcessorTest {
             String singleInput;
             while ((singleInput = processor.processInput()) != null)
                 input.add(singleInput);
-            CommandProcessor.processInsert(input);
+
+            Map<String, String> inputMap = new HashMap<String, String>();
+            inputMap.put("nome", input.get(0));
+            inputMap.put("email", input.get(1));
+            inputMap.put("cpf", input.get(2));
+            inputMap.put("telefone", input.get(3));
+            inputMap.put("sexo", input.get(4));
+            inputMap.put("datanascimento", input.get(5));
+            CommandProcessor.processInsert(inputMap);
 
             int rowsAffected = CommandProcessor.processDelete("888.888.888-88");
             assertTrue(rowsAffected == 1, "Delete failed!");
