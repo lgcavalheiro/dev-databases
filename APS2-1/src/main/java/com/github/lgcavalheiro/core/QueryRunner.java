@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,7 +37,9 @@ public abstract class QueryRunner {
         switch (field) {
             case "datanascimento":
                 try {
-                    new SimpleDateFormat("yyyy-MM-dd").parse(value);
+                    DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    sdf.setLenient(false);
+                    sdf.parse(value);
                     isValid = true;
                 } catch (Exception e) {
                     isValid = false;
@@ -70,7 +73,8 @@ public abstract class QueryRunner {
             if (validateFieldValue(e.getKey(), e.getValue())) {
                 statement.setString(pessoaColumns.indexOf(e.getKey()) + 1, e.getValue());
             } else {
-                throw new Exception("Validation failed for field: " + e.getValue());
+                throw new Exception(
+                        "Validation failed for field: " + e.getKey() + "\n Value provided was: " + e.getValue());
             }
         }
     }
